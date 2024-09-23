@@ -14,7 +14,7 @@ namespace Dominio
         private string _nombre;
         private string _pais;
 
-        public Agencia(int id, string nombre, string pais)
+        public Agencia(string nombre, string pais)
         {
             _id = s_ultId;
             s_ultId++;

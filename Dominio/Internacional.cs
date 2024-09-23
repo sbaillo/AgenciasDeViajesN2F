@@ -10,7 +10,7 @@ namespace Dominio
     {
         private int _calificacion;
 
-        public Internacional(int id, string nombre, string pais, int calificacion) : base(id, nombre, pais)
+        public Internacional(string nombre, string pais, int calificacion) : base(nombre, pais)
         {
             _calificacion = calificacion;
         }

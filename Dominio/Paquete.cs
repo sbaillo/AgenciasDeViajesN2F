@@ -16,7 +16,7 @@ namespace Dominio
         private static double s_costoBase = 100;
         private List<PaqueteDestino> _destinos = new List<PaqueteDestino>();
 
-        public Paquete(int id, DateTime fecha, Agencia agencia)
+        public Paquete(DateTime fecha, Agencia agencia)
         {
             _id = s_ultId;
             s_ultId++;

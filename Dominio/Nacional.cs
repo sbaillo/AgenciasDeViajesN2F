@@ -12,7 +12,7 @@ namespace Dominio
         private string _rut;
         private int _anio;
 
-        public Nacional(int id, string nombre, string pais, string rut, int anio):base(id,nombre, pais)
+        public Nacional(string nombre, string pais, string rut, int anio):base(nombre, pais)
         {
             _rut = rut;
             _anio = anio;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    internal class Destino : IValidable
+    public class Destino : IValidable
     {
         private string _id;
         private string _nombre;
@@ -29,6 +29,11 @@ namespace Dominio
             get { return _precioPorDia; }
         }
 
+        public string Id 
+        {
+            get { return _id; }
+        }
+
         public void Validar()
         {
             if (string.IsNullOrEmpty(_nombre)) throw new Exception("El nombre no puede ser vacio");
@@ -40,6 +45,12 @@ namespace Dominio
         private void ValidarId()
         {
             if (string.IsNullOrEmpty(_id) || _id.Length != 8) throw new Exception("El Id debe tener 8 caracteres");
+        }
+
+        public override bool Equals(object obj)
+        {
+            Destino d = obj as Destino;
+            return d != null && _id.Equals(d._id);
         }
     }
 }

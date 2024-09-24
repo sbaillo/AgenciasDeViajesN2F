@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    internal class Paquete : IValidable
+    public class Paquete : IValidable
     {
         private static int s_ultId = 1;
         private int _id;
@@ -15,6 +15,11 @@ namespace Dominio
         private Agencia _agencia;
         private static double s_costoBase = 100;
         private List<PaqueteDestino> _destinos = new List<PaqueteDestino>();
+
+        public int Id 
+        { 
+            get { return _id; } 
+        }
 
         public Paquete(DateTime fecha, Agencia agencia)
         {
@@ -39,6 +44,25 @@ namespace Dominio
             }
 
             return suma;
+        }
+
+        public void AgregarDestinoAlPaquete(PaqueteDestino pd)
+        {
+            if (pd == null) throw new Exception("El paquete-destino es nulo");
+            pd.Validar();
+            if (_destinos.Contains(pd)) throw new Exception("El paquete ya contiene el destino");
+            _destinos.Add(pd);
+        }
+
+        public int ContarTotalDias()
+        {
+            int total = 0;
+            foreach(PaqueteDestino pd in _destinos)
+            {
+                total += pd.Dias;
+            }
+
+            return total;
         }
     }
 }

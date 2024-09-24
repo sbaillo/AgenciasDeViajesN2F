@@ -22,10 +22,25 @@ namespace Dominio
             _pais = pais;
         }
 
+        public int Id
+        {
+            get { return _id; }
+        }
+
+        public string Pais
+        {
+            get { return _pais; }
+        }
+
         public virtual void Validar()
         {
             if (string.IsNullOrEmpty(_nombre)) throw new Exception("El nombre no puede ser vacio");
             if (string.IsNullOrEmpty(_pais)) throw new Exception("El pais no puede ser vacio");
+        }
+
+        public override string ToString()
+        {
+            return $"{_id} - Nombre: {_nombre} - Pais: {_pais}";
         }
     }
 }

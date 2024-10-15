@@ -15,6 +15,7 @@ namespace Dominio
         private Agencia _agencia;
         private static double s_costoBase = 100;
         private List<PaqueteDestino> _destinos = new List<PaqueteDestino>();
+        private double _precioFinalGuardado = 0;
 
         public int Id 
         { 
@@ -37,13 +38,24 @@ namespace Dominio
 
         public double CalcularPrecioFinal()
         {
-            double suma = s_costoBase;
-            foreach(PaqueteDestino pd in _destinos)
+            if(_precioFinalGuardado == 0)
             {
-                suma += pd.CalcularCosto();
-            }
+                double suma = s_costoBase;
+                foreach (PaqueteDestino pd in _destinos)
+                {
+                    suma += pd.CalcularCosto();
+                }
 
-            return suma;
+                double porcentajeDescuento = _agencia.DevolverPorcentaje();
+                suma -= suma * porcentajeDescuento / 100;
+
+                //Con el otro metodo sería asi
+                //suma = _agencia.AplicarDescuento(suma);
+
+                _precioFinalGuardado = suma;
+            }
+            
+            return _precioFinalGuardado;
         }
 
         public void AgregarDestinoAlPaquete(PaqueteDestino pd)
@@ -63,6 +75,19 @@ namespace Dominio
             }
 
             return total;
+        }
+
+        public bool ContieneDestino(Destino d)
+        {
+            bool tiene = false;
+            int i = 0;
+            while(!tiene && i < _destinos.Count)
+            {
+                if (_destinos[i].Destino.Equals(d)) tiene = true;
+                i++;
+            }
+
+            return tiene;
         }
     }
 }

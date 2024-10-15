@@ -25,5 +25,27 @@ namespace Dominio
             base.Validar();
             ValidarCalificacion();
         }
+
+        public override double DevolverPorcentaje()
+        {
+            double porc = 5;
+            if (_calificacion > 3) porc = 8;
+            return porc;
+        }
+
+        public override double AplicarDescuento(double subtotal)
+        {
+            double retorno = subtotal;
+            if (_calificacion <= 3)
+            {
+                retorno *= 0.95;
+            }
+            else
+            {
+                retorno *= 0.92;
+            }
+
+            return retorno;
+        }
     }
 }

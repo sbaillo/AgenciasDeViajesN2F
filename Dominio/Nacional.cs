@@ -24,5 +24,19 @@ namespace Dominio
             if (string.IsNullOrEmpty(_rut)) throw new Exception("El RUT no puede ser vacio");
             if (_anio < 0) throw new Exception("El año no puede ser negativo");
         }
+
+        public override double DevolverPorcentaje()
+        {
+            double porc = 0;
+            if (_anio < 2020) porc = 10;
+            return porc;
+        }
+
+        public override double AplicarDescuento(double subtotal)
+        {
+            double retorno = subtotal;
+            if (_anio < 2020) retorno *= 0.9;
+            return retorno;
+        }
     }
 }

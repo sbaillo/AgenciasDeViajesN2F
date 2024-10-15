@@ -42,5 +42,10 @@ namespace Dominio
         {
             return $"{_id} - Nombre: {_nombre} - Pais: {_pais}";
         }
+
+        //Pueden hacer una u otra opcion para resolver lo mismo
+        public abstract double DevolverPorcentaje();
+
+        public abstract double AplicarDescuento(double subtotal);
     }
 }

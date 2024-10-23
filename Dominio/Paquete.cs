@@ -22,6 +22,11 @@ namespace Dominio
             get { return _id; } 
         }
 
+        public Agencia Agencia
+        {
+            get { return _agencia; }
+        }
+
         public Paquete(DateTime fecha, Agencia agencia)
         {
             _id = s_ultId;

@@ -171,5 +171,75 @@ namespace Dominio
 
             return buscados;
         }
+
+        public List<Paquete> PaquetesConMayorDuracion()
+        {
+            List<Paquete> mayores = new List<Paquete>();
+            int cantMayor = int.MinValue;
+
+            foreach(Paquete p in _paquetes)
+            {
+                int duracion = p.ContarTotalDias();
+                if(duracion > cantMayor)
+                {
+                    cantMayor = duracion;
+                    mayores.Clear();
+                    mayores.Add(p);
+                }
+                else if(duracion ==  cantMayor)
+                {
+                    mayores.Add(p);
+                }
+            }
+
+            return mayores;
+        }
+
+        public List<Agencia> AgenciasConPaquetes()
+        {
+            List<Agencia> listado = new List<Agencia>();
+            foreach(Paquete p in _paquetes)
+            {
+                if(!listado.Contains(p.Agencia)) listado.Add(p.Agencia);
+            }
+
+            return listado;
+        }
+
+        public List<Agencia> AgenciasSinPaquetes()
+        {
+            List<Agencia> listado = new List<Agencia>();
+            List<Agencia> agenciasConPaquetes = AgenciasConPaquetes();
+            foreach (Agencia a in _agencias)
+            {
+                if(!agenciasConPaquetes.Contains(a)) listado.Add(a);
+            }
+
+            return listado;
+        }
+
+        public bool TienePaquete(Agencia a)
+        {
+            bool tiene = false;
+            int i = 0;
+            while(i < _paquetes.Count && !tiene)
+            {
+                if (_paquetes[i].Agencia.Equals(a)) tiene = true;
+                i++;
+            }
+
+            return tiene;
+        }
+
+        public List<Agencia> AgenciaSinPaquetesVersionDos()
+        {
+            List<Agencia> listado = new List<Agencia>();
+            foreach(Agencia a in _agencias)
+            {
+                if(TienePaquete(a)) listado.Add(a);
+            }
+
+            return listado;
+        }
     }
 }

@@ -47,5 +47,11 @@ namespace Dominio
         public abstract double DevolverPorcentaje();
 
         public abstract double AplicarDescuento(double subtotal);
+
+        public override bool Equals(object? obj)
+        {
+            Agencia a = obj as Agencia;
+            return a != null && _id == a._id;
+        }
     }
 }

@@ -1,0 +1,22 @@
+﻿@using Dominio;
+@{
+    ViewData["Title"] = "Detalle";
+}
+
+<h1>Detalle de destino</h1>
+<br />
+
+@if(ViewBag.Destino  == null)
+{
+    <div class="alert alert-danger">Destino no encontrado</div>
+}
+else
+{
+    Destino d = ViewBag.Destino;
+    <p>Id: @d.Id</p>
+    <p>Nombre: @d.Nombre</p>
+    <p>Descripcion: @d.Descripcion</p>
+    <p>Tipo: @d.Tipo</p>
+    <p>Precio por dia: $ @d.PrecioPorDia</p>
+}
+

@@ -1,0 +1,29 @@
+﻿@using Dominio;
+@{
+    ViewData["Title"] = "Listado";
+}
+
+<h1>Listado de destinos</h1>
+
+@if(ViewBag.Listado == null || ViewBag.Listado.Count == 0)
+{
+    <div class="alert alert-danger">No se encontraron destinos en el sistema</div>
+}
+else
+{
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+        @foreach(Destino d in ViewBag.Listado)
+        {
+            <tr>
+                <td>@d.Id</td>
+                <td>@d.Nombre</td>
+                <td><a href="/destinos/detalle?id=@d.Id">Ver detalle</a></td>
+            </tr>
+        }
+    </table>
+}

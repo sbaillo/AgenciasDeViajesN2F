@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consola", "Consola\Consola.csproj", "{5C51300D-8971-43F2-9C5E-4EACC9930E5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Consola", "Consola\Consola.csproj", "{5C51300D-8971-43F2-9C5E-4EACC9930E5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.csproj", "{AD4AF88E-74AA-42AA-9CD2-63A374FBD791}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dominio", "Dominio\Dominio.csproj", "{AD4AF88E-74AA-42AA-9CD2-63A374FBD791}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{5D4D229F-8D73-411F-9613-E0E2D38A5E17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AD4AF88E-74AA-42AA-9CD2-63A374FBD791}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD4AF88E-74AA-42AA-9CD2-63A374FBD791}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD4AF88E-74AA-42AA-9CD2-63A374FBD791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D4D229F-8D73-411F-9613-E0E2D38A5E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D4D229F-8D73-411F-9613-E0E2D38A5E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D4D229F-8D73-411F-9613-E0E2D38A5E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D4D229F-8D73-411F-9613-E0E2D38A5E17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

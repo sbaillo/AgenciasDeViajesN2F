@@ -32,6 +32,11 @@ namespace Dominio
             get { return _pais; }
         }
 
+        public string Nombre
+        {
+            get { return _nombre; }
+        }
+
         public virtual void Validar()
         {
             if (string.IsNullOrEmpty(_nombre)) throw new Exception("El nombre no puede ser vacio");

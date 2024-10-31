@@ -268,5 +268,13 @@ namespace Dominio
 
             return listado;
         }
+
+        public void CambiarPrecioDestino(string idDestino, double precioNuevo)
+        {
+            //hacer validaciones
+            Destino d = ObtenerDestinoPorId(idDestino);
+            if (d == null) throw new Exception("Destino no encontrado");
+            d.ModificarPrecio(precioNuevo);
+        }
     }
 }

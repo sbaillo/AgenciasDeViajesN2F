@@ -1,5 +1,6 @@
 ﻿using Dominio;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Common;
 
 namespace Web.Controllers
 {
@@ -7,6 +8,7 @@ namespace Web.Controllers
     {
         private Sistema miSistema = Sistema.Instancia;
 
+        [HttpGet]
         public IActionResult Listado()
         {
             List<Agencia> todasLasAgenciasDeSistema = miSistema.Agencias;
@@ -14,6 +16,7 @@ namespace Web.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult PorPais()
         {
             List<Agencia> todasLasAgenciasDeSistema = miSistema.Agencias;
@@ -21,6 +24,7 @@ namespace Web.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult ProcesarPorPais(string pais)
         {
             try
@@ -38,6 +42,63 @@ namespace Web.Controllers
             return View("PorPais");
         }
 
+        [HttpGet]
+        public IActionResult AltaNacional()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult AltaNacional(string nombre, string pais, string rut, int anio)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(nombre)) throw new Exception("El nombre no puede ser vacio");
+                if (string.IsNullOrEmpty(pais)) throw new Exception("El pais no debe estar vacio");
+                if (string.IsNullOrEmpty(rut)) throw new Exception("El RUT no puede ser vacio");
+                if (anio <= 0) throw new Exception("El año debe ser positivo");
+
+                Agencia miAgencia = new Nacional(nombre, pais, rut, anio);
+                miSistema.AltaAgencia(miAgencia);
+                ViewBag.Exito = $"Se dio de alta correctamente la agencia {nombre}";
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                ViewBag.Nombre = nombre;
+                ViewBag.Pais = pais;
+                ViewBag.Rut = rut;
+                ViewBag.Anio = anio;
+            }
+
+            return View("AltaNacional");
+        }
+
+        [HttpGet]
+        public IActionResult AltaInternacional()
+        {
+            return View(new Internacional());
+        }
+
+        [HttpPost]
+        public IActionResult AltaInternacional(Internacional agencia)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(agencia.Nombre)) throw new Exception("El nombre no puede ser vacio");
+                if (string.IsNullOrEmpty(agencia.Pais)) throw new Exception("El pais no puede ser nulo");
+                if (agencia.Calificacion <= 0) throw new Exception("La calificacion tiene que ser positiva");
+                miSistema.AltaAgencia(agencia);
+                ViewBag.Exito = $"Agencia internacional {agencia.Nombre} dada de alta correctamente";
+                return View(new Internacional());
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View(agencia);
+            }
+        }
+
+        
     }
 }

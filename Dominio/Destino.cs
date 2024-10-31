@@ -67,5 +67,11 @@ namespace Dominio
             Destino d = obj as Destino;
             return d != null && _id.Equals(d._id);
         }
+
+        public void ModificarPrecio(double precioNuevo)
+        {
+            if (precioNuevo <= 0) throw new Exception("El precio por dia debe ser mayor a 0");
+            _precioPorDia = precioNuevo;
+        }
     }
 }

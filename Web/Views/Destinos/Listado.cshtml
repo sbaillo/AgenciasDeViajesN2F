@@ -15,6 +15,7 @@ else
         <tr>
             <th>Id</th>
             <th>Nombre</th>
+            <th>Precio</th>
             <th>Acciones</th>
         </tr>
         @foreach(Destino d in ViewBag.Listado)
@@ -22,6 +23,7 @@ else
             <tr>
                 <td>@d.Id</td>
                 <td>@d.Nombre</td>
+                <td>@d.PrecioPorDia</td>
                 <td><a href="/destinos/detalle?id=@d.Id">Ver detalle</a></td>
             </tr>
         }

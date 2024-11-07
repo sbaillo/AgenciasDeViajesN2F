@@ -11,6 +11,11 @@ namespace Web.Controllers
         [HttpGet]
         public IActionResult Listado()
         {
+            if(HttpContext.Session.GetString("email") == null)
+            {
+                return View("NoAutorizado");
+            }
+
             List<Agencia> todasLasAgenciasDeSistema = miSistema.Agencias;
             ViewBag.Listado = todasLasAgenciasDeSistema;
             return View();
@@ -19,6 +24,11 @@ namespace Web.Controllers
         [HttpGet]
         public IActionResult PorPais()
         {
+            if (HttpContext.Session.GetString("email") == null)
+            {
+                return View("NoAutorizado");
+            }
+
             List<Agencia> todasLasAgenciasDeSistema = miSistema.Agencias;
             ViewBag.Listado = todasLasAgenciasDeSistema;
             return View();
@@ -27,6 +37,11 @@ namespace Web.Controllers
         [HttpGet]
         public IActionResult ProcesarPorPais(string pais)
         {
+            if (HttpContext.Session.GetString("email") == null)
+            {
+                return View("NoAutorizado");
+            }
+
             try
             {
                 if (string.IsNullOrEmpty(pais)) throw new Exception("Debe ingresar un pais");
@@ -45,12 +60,22 @@ namespace Web.Controllers
         [HttpGet]
         public IActionResult AltaNacional()
         {
+            if(HttpContext.Session.GetString("rol") == null || HttpContext.Session.GetString("rol") != "Admin")
+            {
+                return View("NoAutorizado");
+            }
+
             return View();
         }
 
         [HttpPost]
         public IActionResult AltaNacional(string nombre, string pais, string rut, int anio)
         {
+            if (HttpContext.Session.GetString("rol") == null || HttpContext.Session.GetString("rol") != "Admin")
+            {
+                return View("NoAutorizado");
+            }
+
             try
             {
                 if (string.IsNullOrEmpty(nombre)) throw new Exception("El nombre no puede ser vacio");
@@ -77,12 +102,22 @@ namespace Web.Controllers
         [HttpGet]
         public IActionResult AltaInternacional()
         {
+            if (HttpContext.Session.GetString("rol") == null || HttpContext.Session.GetString("rol") != "Admin")
+            {
+                return View("NoAutorizado");
+            }
+
             return View(new Internacional());
         }
 
         [HttpPost]
         public IActionResult AltaInternacional(Internacional agencia)
         {
+            if (HttpContext.Session.GetString("rol") == null || HttpContext.Session.GetString("rol") != "Admin")
+            {
+                return View("NoAutorizado");
+            }
+
             try
             {
                 if (string.IsNullOrEmpty(agencia.Nombre)) throw new Exception("El nombre no puede ser vacio");

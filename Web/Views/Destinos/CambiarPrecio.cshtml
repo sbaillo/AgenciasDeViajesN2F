@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "CambiarPrecio";
+}
+
+<h1>Cambiar Precio</h1>
+
+<form method="post" action="/destinos/cambiarPrecio">
+    <label>Precio nuevo</label>
+    <input type="number" placeholder="Precio nuevo" name="precioNuevo" />
+
+    <input type="text" value="@ViewBag.Id" name="idDestino" hidden/>
+
+    <br />
+    <input type="submit" value="Cambiar precio" class="btn btn-success"/>
+</form>
+

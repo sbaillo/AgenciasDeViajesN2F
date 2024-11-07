@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<br />
+
+@if(ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+    <br />
+}
+
+@if(ViewBag.Exito != null)
+{
+    <div class="alert alert-success">@ViewBag.Exito</div>
+    <br />
+}
+
+
+<form method="post" action="/usuarios/login">
+    <label>Ingrese su email:</label>
+    <input type="email" placeholder="Ingrese email" name="email"/>
+
+    <br />
+
+    <label>Ingrese su contraseña:</label>
+    <input type="password" placeholder="Ingrese password" name="pass"/>
+
+    <br />
+
+    <input type="submit" class="btn-success" value="Ingresar"/>
+</form>
+

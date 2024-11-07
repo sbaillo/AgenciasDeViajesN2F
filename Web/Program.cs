@@ -9,6 +9,9 @@ namespace Web
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            //PARA USAR SESSION: ESTA LINEA TIENE QUE ESTAR ANTES DE builder.Build()
+            builder.Services.AddSession();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -25,6 +28,9 @@ namespace Web
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            //PARA USAR SESSION: ESTA LINEA TIENE QUE ESTAR DECLARADA ANTES DE app.Run();
+            app.UseSession();
 
             app.Run();
         }

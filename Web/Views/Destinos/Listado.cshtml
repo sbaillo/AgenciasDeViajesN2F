@@ -5,6 +5,19 @@
 
 <h1>Listado de destinos</h1>
 
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+    <br />
+}
+
+@if (ViewBag.Exito != null)
+{
+    <div class="alert alert-success">@ViewBag.Exito</div>
+    <br />
+}
+
+
 @if(ViewBag.Listado == null || ViewBag.Listado.Count == 0)
 {
     <div class="alert alert-danger">No se encontraron destinos en el sistema</div>
@@ -16,7 +29,8 @@ else
             <th>Id</th>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Acciones</th>
+            <th>Detalle</th>
+            <th>Modificar</th>
         </tr>
         @foreach(Destino d in ViewBag.Listado)
         {
@@ -25,6 +39,14 @@ else
                 <td>@d.Nombre</td>
                 <td>@d.PrecioPorDia</td>
                 <td><a href="/destinos/detalle?id=@d.Id">Ver detalle</a></td>
+                @if (Context.Session.GetString("rol") != null && Context.Session.GetString("rol") == "Admin")
+                {
+                    <td><a href="/destinos/cambiarPrecio?id=@d.Id">Cambiar Precio</a></td>
+                }
+                else
+                {
+                    <td>Accion no permitida</td>
+                }
             </tr>
         }
     </table>
